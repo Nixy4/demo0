@@ -51,12 +51,24 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 /* USER CODE BEGIN PFP */
 
+//					  MX_功能模块_具体功能();
+//static void MX_GPIO_Init(void);
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 //全局代码,统一放到Code 0
 #include "stdio.h"
+int val1 = 10;
+char ch1 = 'A';
+
+#define LED_PORT 	GPIOC
+#define LED_R			GPIO_PIN_6
+#define LED_G			GPIO_PIN_7
+#define LED_B			GPIO_PIN_8
+#define LED_ON			GPIO_PIN_SET
+#define LED_OFF		GPIO_PIN_RESET
 
 /* USER CODE END 0 */
 
@@ -90,27 +102,26 @@ int main(void)
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
 	
-	//main函数中只需要执行一次的代码,放在这里
-	//显示屏的初始化函数();
-	//wifi模块的初始化函数();
-	//传感器模块初始化函数();
-	
-	//点亮红色LED灯
-	//HAL_外设模块名称_具体的功能();
-	HAL_GPIO_WritePin( GPIOC,GPIO_PIN_6,GPIO_PIN_SET );
-	
-	
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1) //
   {
-		//需要反复执行的函数
-		//刷新显示器函数();
-		//传感器数据获取函数();
+		HAL_GPIO_WritePin( LED_PORT, LED_R, LED_ON  );
+		HAL_Delay(500);//毫秒延时函数
+		HAL_GPIO_WritePin( LED_PORT, LED_R, LED_OFF  );
+		HAL_Delay(500);
 		
+		HAL_GPIO_WritePin( LED_PORT, LED_G, LED_ON  );
+		HAL_Delay(500);
+		HAL_GPIO_WritePin( LED_PORT, LED_G, LED_OFF  );
+		HAL_Delay(500);
 		
+		HAL_GPIO_WritePin( LED_PORT, LED_B, LED_ON  );
+		HAL_Delay(500);
+		HAL_GPIO_WritePin( LED_PORT, LED_B, LED_OFF  );
+		HAL_Delay(500);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -169,10 +180,10 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOC_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_6, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_6|GPIO_PIN_7|GPIO_PIN_8, GPIO_PIN_RESET);
 
-  /*Configure GPIO pin : PC6 */
-  GPIO_InitStruct.Pin = GPIO_PIN_6;
+  /*Configure GPIO pins : PC6 PC7 PC8 */
+  GPIO_InitStruct.Pin = GPIO_PIN_6|GPIO_PIN_7|GPIO_PIN_8;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
