@@ -58,19 +58,8 @@ static void MX_GPIO_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-//全局代码,统一放到Code 0
-#include "stdio.h"
 
-
-//宏定义:用<宏名称>代替<要替换的内容>
-
-//#宏定义关键字 宏名称		要替换的内容
-#define 				LED_PORT 	GPIOC						//LED的GPIO端口 (PORT >> 端口)
-#define 				LED_R			GPIO_PIN_6			//某种颜色对应的管脚号
-#define 				LED_G			GPIO_PIN_7			
-#define 				LED_B			GPIO_PIN_8
-#define 				LED_ON		GPIO_PIN_SET		//开灯需要的电平
-#define 				LED_OFF		GPIO_PIN_RESET	//关灯需要的电平
+#include "led.h"
 
 /* USER CODE END 0 */
 
@@ -103,27 +92,21 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
+	led_switch(LED_R, LED_ON);
+	led_blink(LED_B, 3, 500);
 	
+	GPIO_PinState keyState;
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1) //
   {
-		HAL_GPIO_WritePin( LED_PORT, LED_R, LED_ON  );
-		HAL_Delay(500);//毫秒延时函数
-		HAL_GPIO_WritePin( LED_PORT, LED_R, LED_OFF  );
-		HAL_Delay(500);
-		
-		HAL_GPIO_WritePin( LED_PORT, LED_G, LED_ON  );
-		HAL_Delay(500);
-		HAL_GPIO_WritePin( LED_PORT, LED_G, LED_OFF  );
-		HAL_Delay(500);
-		
-		HAL_GPIO_WritePin( LED_PORT, LED_B, LED_ON  );
-		HAL_Delay(500);
-		HAL_GPIO_WritePin( LED_PORT, LED_B, LED_OFF  );
-		HAL_Delay(500);
+		keyState = HAL_GPIO_ReadPin( GPIOC, GPIO_PIN_2 );
+		if( keyState==GPIO_PIN_RESET )
+		{
+			led_blink(LED_G, 3, 500);
+		}
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -184,12 +167,22 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOC, GPIO_PIN_6|GPIO_PIN_7|GPIO_PIN_8, GPIO_PIN_RESET);
 
+  /*Configure GPIO pin : PC2 */
+  GPIO_InitStruct.Pin = GPIO_PIN_2;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+
   /*Configure GPIO pins : PC6 PC7 PC8 */
   GPIO_InitStruct.Pin = GPIO_PIN_6|GPIO_PIN_7|GPIO_PIN_8;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+
+  /* EXTI interrupt init*/
+  HAL_NVIC_SetPriority(EXTI2_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(EXTI2_IRQn);
 
 /* USER CODE BEGIN MX_GPIO_Init_2 */
 /* USER CODE END MX_GPIO_Init_2 */
