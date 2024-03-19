@@ -60,15 +60,17 @@ static void MX_GPIO_Init(void);
 /* USER CODE BEGIN 0 */
 //全局代码,统一放到Code 0
 #include "stdio.h"
-int val1 = 10;
-char ch1 = 'A';
 
-#define LED_PORT 	GPIOC
-#define LED_R			GPIO_PIN_6
-#define LED_G			GPIO_PIN_7
-#define LED_B			GPIO_PIN_8
-#define LED_ON			GPIO_PIN_SET
-#define LED_OFF		GPIO_PIN_RESET
+
+//宏定义:用<宏名称>代替<要替换的内容>
+
+//#宏定义关键字 宏名称		要替换的内容
+#define 				LED_PORT 	GPIOC						//LED的GPIO端口 (PORT >> 端口)
+#define 				LED_R			GPIO_PIN_6			//某种颜色对应的管脚号
+#define 				LED_G			GPIO_PIN_7			
+#define 				LED_B			GPIO_PIN_8
+#define 				LED_ON		GPIO_PIN_SET		//开灯需要的电平
+#define 				LED_OFF		GPIO_PIN_RESET	//关灯需要的电平
 
 /* USER CODE END 0 */
 
