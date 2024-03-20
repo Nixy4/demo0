@@ -24,5 +24,12 @@ demo0/main.o: ..\Core\Src\main.c ..\Core\Inc\main.h \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_cortex.h \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash.h \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash_ex.h \
+  ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_i2c.h \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pwr.h \
-  ..\Library\led.h
+  ..\Library\led.h ..\Library\stm32_hal_hw_i2c_u8g2.h \
+  ..\Library\.\u8g2\u8g2.h ..\Library\.\u8g2\u8x8.h \
+  D:\STM32\MDK\ARM\ARMCLANG\Bin\..\include\stdarg.h \
+  D:\STM32\MDK\ARM\ARMCLANG\Bin\..\include\limits.h \
+  D:\STM32\MDK\ARM\ARMCLANG\Bin\..\include\stdio.h \
+  D:\STM32\MDK\ARM\ARMCLANG\Bin\..\include\string.h \
+  ..\Library\anim_kk1.h ..\Library\anim_kk2.h

@@ -5,10 +5,10 @@
 <h2>Tool Versions:</h2>
 IDE-Version: ¦ÌVision V5.38.0.0
 Copyright (C) 2022 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: 1 NIXY, 1, LIC=----
+License Information: 1 NIXY, 1, LIC=CZLZX-HG2CW-12BLE-539V3-A2NWT-21L3F
  
 Tool Versions:
-Toolchain:       MDK-Lite  Version: 5.38.0.0
+Toolchain:       MDK-ARM Plus  Version: 5.38.0.0
 Toolchain Path:  D:\STM32\MDK\ARM\ARMCLANG\Bin
 C Compiler:      ArmClang.exe V6.19
 Assembler:       Armasm.exe V6.19
@@ -22,45 +22,16 @@ Dialog DLL:      TCM.DLL V1.56.4.0
  
 <h2>Project:</h2>
 D:\STM32\Code\demo0\MDK-ARM\demo0.uvprojx
-Project File Date:  03/19/2024
+Project File Date:  03/20/2024
 
 <h2>Output:</h2>
 *** Using Compiler 'V6.19', folder: 'D:\STM32\MDK\ARM\ARMCLANG\Bin'
 Build target 'demo0'
-assembling startup_stm32f103xe.s...
-compiling stm32f1xx_hal_tim.c...
-compiling stm32f1xx_hal_tim_ex.c...
-compiling stm32f1xx_hal_gpio_ex.c...
-compiling stm32f1xx_it.c...
-compiling stm32f1xx_hal_msp.c...
-compiling stm32f1xx_hal_rcc_ex.c...
-../Core/Src/main.c(96): warning: implicit conversion from 'int' to 'uint8_t' (aka 'unsigned char') changes value from 500 to 244 [-Wconstant-conversion]
-        led_blink(LED_B, 3, 500);
-        ~~~~~~~~~           ^~~
-../Core/Src/main.c(108): warning: implicit conversion from 'int' to 'uint8_t' (aka 'unsigned char') changes value from 500 to 244 [-Wconstant-conversion]
-                        led_blink(LED_G, 3, 500);
-                        ~~~~~~~~~           ^~~
-2 warnings generated.
 compiling main.c...
-compiling stm32f1xx_hal.c...
-compiling stm32f1xx_hal_gpio.c...
-compiling stm32f1xx_hal_rcc.c...
-compiling stm32f1xx_hal_dma.c...
-../Library/led.c(8): error: conflicting types for 'led_blink'
-void led_blink(uint16_t color, uint8_t time, uint32_t interval)
-     ^
-../Library/led.h(14): note: previous declaration is here
-void led_blink(uint16_t color, uint8_t time, uint8_t interval);//ms
-     ^
-1 error generated.
-compiling led.c...
-compiling stm32f1xx_hal_pwr.c...
-compiling system_stm32f1xx.c...
-compiling stm32f1xx_hal_cortex.c...
-compiling stm32f1xx_hal_flash.c...
-compiling stm32f1xx_hal_exti.c...
-compiling stm32f1xx_hal_flash_ex.c...
-"demo0\demo0.axf" - 1 Error(s), 2 Warning(s).
+linking...
+Program Size: Code=11576 RO-data=24344 RW-data=96 ZI-data=2984  
+FromELF: creating hex file...
+"demo0\demo0.axf" - 0 Error(s), 0 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -84,8 +55,7 @@ Package Vendor: Keil
 
    * Component: ARM::CMSIS:CORE:5.6.0
       Include file:  CMSIS/Core/Include/tz_context.h
-Target not created.
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:00
 </pre>
 </body>
 </html>
